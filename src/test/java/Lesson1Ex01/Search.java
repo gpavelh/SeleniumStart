@@ -27,9 +27,12 @@ public class Search {
         input.sendKeys("Руддщ цщкдв!");
         WebElement button = webDriver.findElement(By.xpath("//button[.=\"Найти\"]"));
         button.click();
-        Thread.sleep(5000);
+        Thread.sleep(500);
         input = webDriver.findElement(By.name("text"));
         Assert.assertEquals(input.getAttribute("value"),"Hello world!");
+        input = webDriver.findElement(By.xpath("//title[text()[contains(.,'hello world')]]"));
+        System.out.println(input.getText());
+        Assert.assertEquals(input.getText().contains("hello world"),"hello world");
     }
 
     @AfterMethod
