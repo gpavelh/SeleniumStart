@@ -30,8 +30,7 @@ public class Search {
         Thread.sleep(500); //тупой ноут. долго проводит автозамену в поле поиска
         input = webDriver.findElement(By.name("text"));
         Assert.assertEquals(input.getAttribute("value"), "Hello world!");
-        String title = webDriver.getTitle();
-        Assert.assertTrue(title.contains("Hello world!"));
+        Assert.assertTrue(webDriver.getTitle().contains("Hello world!"));
     }
 
     @AfterMethod
