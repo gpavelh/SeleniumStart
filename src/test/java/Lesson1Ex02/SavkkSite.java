@@ -15,7 +15,7 @@ public class SavkkSite {
     private WebDriver webDriver;
 
     @BeforeClass
-    public void downloadDriver(){
+    public void downloadDriver() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -26,22 +26,32 @@ public class SavkkSite {
 
     @Test
     void openPage() throws InterruptedException {
+        //Button page
         webDriver.get("https://savkk.github.io/selenium-practice/");
-        WebElement button = webDriver.findElement(By.id("button"));
-        button.click();
-        WebElement clickMe = webDriver.findElement(By.id("first"));
-//        Thread.sleep(1000);
-        clickMe.click();
-        WebElement clickMeToo = webDriver.findElement(By.xpath("//input[@value='Click me too!']"));
-//        Thread.sleep(1000);
-        clickMeToo.click();
+        webDriver.findElement(By.id("button")).click();
+        webDriver.findElement(By.id("first")).click();
+        webDriver.findElement(By.xpath("//input[@value='Click me too!']")).click();
         WebElement goBack = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBack.getText(), "Great! Return to menu");
-//        Thread.sleep(1000);
         goBack.click();
-//        Thread.sleep(1000);
-        WebElement checkBoxes = webDriver.findElement(By.id("checkbox"));
-        checkBoxes.click();
+
+        //Checkbox and Radio
+        webDriver.findElement(By.id("checkbox")).click();
+        //CheckBoxes
+        webDriver.findElement(By.id("one")).click();
+        webDriver.findElement(By.id("two")).click();
+        webDriver.findElement(By.id("go")).click();
+        WebElement resultCheckBox = webDriver.findElement((By.xpath("//label[@id='result']")));
+        Assert.assertEquals(resultCheckBox.getText(), "one two");
+
+        //Radio button
+        webDriver.findElement(By.id("radio_two")).click();
+        webDriver.findElement(By.id("radio_go")).click();
+        WebElement resultRadioButton = webDriver.findElement(By.xpath("//label[@id='radio_result']"));
+        Assert.assertEquals(resultRadioButton.getText(), "two");
+        WebElement goBackAgain = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
+        Assert.assertEquals(goBackAgain.getText(), "Great! Return to menu");
+        goBackAgain.click();
 
     }
 
@@ -49,6 +59,4 @@ public class SavkkSite {
     void closeDriver() {
         webDriver.close();
     }
-
-
 }
