@@ -25,8 +25,7 @@ public class Search {
         webDriver.get("https://ya.ru");
         WebElement input = webDriver.findElement(By.id("text"));
         input.sendKeys("Руддщ цщкдв!");
-        WebElement button = webDriver.findElement(By.xpath("//button[.=\"Найти\"]"));
-        button.click();
+        webDriver.findElement(By.xpath("//button[.=\"Найти\"]")).click();
         Thread.sleep(500); //тупой ноут. долго проводит автозамену в поле поиска
         input = webDriver.findElement(By.name("text"));
         Assert.assertEquals(input.getAttribute("value"), "Hello world!");
