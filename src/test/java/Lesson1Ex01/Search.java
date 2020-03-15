@@ -1,10 +1,13 @@
 package Lesson1Ex01;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,12 +26,18 @@ public class Search {
     @Test
     void YandexSearch() throws InterruptedException {
         webDriver.get("https://ya.ru");
-        WebElement input = webDriver.findElement(By.id("text"));
-        input.sendKeys("Руддщ цщкдв!");
+        WebElement inputValue = webDriver.findElement(By.id("text"));
+        inputValue.sendKeys("Руддщ цщкдв!");
         webDriver.findElement(By.xpath("//button[.=\"Найти\"]")).click();
-        Thread.sleep(500); //тупой ноут. долго проводит автозамену в поле поиска
-        input = webDriver.findElement(By.name("text"));
-        Assert.assertEquals(input.getAttribute("value"), "Hello world!");
+
+        Boolean input = new WebDriverWait(webDriver, 10)
+                .ignoring(StaleElementReferenceException.class)
+                .until(ExpectedConditions
+                        .attributeToBe(By.xpath("//input[@name = 'text']"), "value", "Hello world!"));
+        Assert.assertTrue(input, "Hello world!");
+
+        inputValue = webDriver.findElement(By.name("text"));
+        Assert.assertEquals(inputValue.getAttribute("value"), "Hello world!");
         Assert.assertTrue(webDriver.getTitle().contains("Hello world!"));
     }
 

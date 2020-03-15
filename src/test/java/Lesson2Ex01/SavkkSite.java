@@ -38,14 +38,14 @@ public class SavkkSite {
         //Checkbox and Radio
         webDriver.findElement(By.id("checkbox")).click();
         //CheckBoxes
-        webDriver.findElement(By.id("one")).click();
-        webDriver.findElement(By.id("two")).click();
+        webDriver.findElement(By.xpath("//input[@type = 'checkbox' and @value = 'one']")).click();
+        webDriver.findElement(By.xpath("//input[@type = 'checkbox' and @value = 'two']")).click();
         webDriver.findElement(By.id("go")).click();
         WebElement resultCheckBox = webDriver.findElement((By.xpath("//label[@id='result']")));
         Assert.assertEquals(resultCheckBox.getText(), "one two");
 
         //Radio button
-        webDriver.findElement(By.id("radio_two")).click();
+        webDriver.findElement(By.xpath("//input[@type ='radio' and @value = 'two']")).click();
         webDriver.findElement(By.id("radio_go")).click();
         WebElement resultRadioButton = webDriver.findElement(By.xpath("//label[@id='radio_result']"));
         Assert.assertEquals(resultRadioButton.getText(), "two");
