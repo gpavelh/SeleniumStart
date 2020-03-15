@@ -26,7 +26,7 @@ public class SavkkSelect {
     }
 
     @Test
-    void openPage() throws InterruptedException {
+    void buttonTest() throws InterruptedException {
         //Button page
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.findElement(By.id("button")).click();
@@ -35,7 +35,10 @@ public class SavkkSelect {
         WebElement goBack = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBack.getText(), "Great! Return to menu");
         goBack.click();
+    }
 
+    @Test
+    void checkBoxAndRadioTest() {
         //Checkbox and Radio
         webDriver.findElement(By.id("checkbox")).click();
         //CheckBoxes
@@ -53,7 +56,10 @@ public class SavkkSelect {
         WebElement goBackAgain = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBackAgain.getText(), "Great! Return to menu");
         goBackAgain.click();
+    }
 
+    @Test
+    void selectTest() {
         //Select hero
         webDriver.findElement(By.id("select")).click();
         WebElement selectHero = webDriver.findElement(By.xpath("//select[@name = 'hero']"));
@@ -68,11 +74,14 @@ public class SavkkSelect {
         //Get Results
         webDriver.findElement(By.id("go")).click();
         WebElement choiceResult = webDriver.findElement(By.xpath("//label[.='Java']"));
-        Assert.assertEquals(choiceResult.getText(),"Java");
+        Assert.assertEquals(choiceResult.getText(), "Java");
         WebElement goBackAgain2 = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
-        Assert.assertEquals(goBackAgain2.getText(),"Great! Return to menu");
+        Assert.assertEquals(goBackAgain2.getText(), "Great! Return to menu");
         goBackAgain2.click();
+    }
 
+    @Test
+    void formAndIframeTest() {
         //Form
         webDriver.findElement(By.id("form")).click();
         webDriver.findElement(By.xpath("//div[1]/input[@type='text']")).sendKeys("Pavel");
@@ -84,19 +93,19 @@ public class SavkkSelect {
         webDriver.findElement(By.xpath("//textarea [@cols = '50']")).sendKeys("Ton Tom");
         webDriver.findElement(By.xpath("//input[@type = 'submit']")).click();
         WebElement goBackFromForm = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
-        Assert.assertEquals(goBackFromForm.getText(),"Great! Return to menu");
+        Assert.assertEquals(goBackFromForm.getText(), "Great! Return to menu");
         goBackFromForm.click();
 
         //IFrame
         webDriver.findElement(By.id("iframe")).click();
         webDriver.switchTo().frame("code-frame");
         WebElement codeField = webDriver.findElement(By.id("code"));
-        String code = new String(codeField.getText().substring(14,codeField.getText().length()));
+        String code = new String(codeField.getText().substring(14, codeField.getText().length()));
         webDriver.switchTo().defaultContent();
         webDriver.findElement(By.name("code")).sendKeys(code);
         webDriver.findElement(By.name("ok")).click();
         WebElement goBackFromIframe = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
-        Assert.assertEquals(goBackFromIframe.getText(),"Great! Return to menu");
+        Assert.assertEquals(goBackFromIframe.getText(), "Great! Return to menu");
         goBackFromIframe.click();
     }
 
