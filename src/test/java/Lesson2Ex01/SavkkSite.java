@@ -22,12 +22,12 @@ public class SavkkSite {
     @BeforeMethod
     public void initDriver() {
         webDriver = new ChromeDriver();
+        webDriver.get("https://savkk.github.io/selenium-practice/");
     }
 
     @Test
     void openPage() throws InterruptedException {
         //Button page
-        webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.findElement(By.id("button")).click();
         webDriver.findElement(By.id("first")).click();
         webDriver.findElement(By.xpath("//input[@value='Click me too!']")).click();

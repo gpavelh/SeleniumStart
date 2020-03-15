@@ -23,12 +23,12 @@ public class SavkkSelect {
     @BeforeMethod
     public void initDriver() {
         webDriver = new ChromeDriver();
+        webDriver.get("https://savkk.github.io/selenium-practice/");
     }
 
     @Test
     void buttonTest() throws InterruptedException {
         //Button page
-        webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.findElement(By.id("button")).click();
         webDriver.findElement(By.id("first")).click();
         webDriver.findElement(By.xpath("//input[@value='Click me too!']")).click();
@@ -100,7 +100,7 @@ public class SavkkSelect {
         webDriver.findElement(By.id("iframe")).click();
         webDriver.switchTo().frame("code-frame");
         WebElement codeField = webDriver.findElement(By.id("code"));
-        String code = new String(codeField.getText().substring(14, codeField.getText().length()));
+        String code = codeField.getText().substring(14);
         webDriver.switchTo().defaultContent();
         webDriver.findElement(By.name("code")).sendKeys(code);
         webDriver.findElement(By.name("ok")).click();
