@@ -116,18 +116,18 @@ public class SavkkPromot {
         webDriver.findElement(By.id("alerts")).click();
         webDriver.findElement(By.xpath("//button[@class = 'get']")).click();
         Alert alertPass = webDriver.switchTo().alert();
-        String password = alertPass.getText().substring(14);
+        String password = alertPass.getText().substring(15);
         alertPass.accept();
         webDriver.findElement(By.xpath("//button[@class = 'set']")).click();
         Alert alertPassEnter = webDriver.switchTo().alert();
         alertPassEnter.sendKeys(password);
-        Thread.sleep(3000);
         alertPassEnter.accept();
         WebElement great = webDriver.findElement(By.xpath("//label[.='Great!']"));
         Assert.assertEquals(great.getText(), "Great!");
         WebElement returnToMenu = webDriver.findElement(By.xpath("//button[@class ='return']"));
         Assert.assertTrue(returnToMenu.isDisplayed());
         returnToMenu.click();
+        webDriver.switchTo().alert().accept();
     }
 
     @Test(enabled = false)
