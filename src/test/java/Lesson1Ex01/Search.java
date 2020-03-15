@@ -34,7 +34,7 @@ public class Search {
                 .ignoring(StaleElementReferenceException.class)
                 .until(ExpectedConditions
                         .attributeToBe(By.xpath("//input[@name = 'text']"), "value", "Hello world!"));
-        Assert.assertTrue(input, "Hello world!");
+        Assert.assertTrue(input, "Ошибка! Элемент не найден!");
 
         inputValue = webDriver.findElement(By.name("text"));
         Assert.assertEquals(inputValue.getAttribute("value"), "Hello world!");
