@@ -31,6 +31,7 @@ public class SavkkCookies {
         WebElement goBack = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBack.getText(), "Great! Return to menu");
         goBack.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("button").getName(),"button");
     }
 
     @Test
@@ -52,6 +53,7 @@ public class SavkkCookies {
         WebElement goBackAgain = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBackAgain.getText(), "Great! Return to menu");
         goBackAgain.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("checkboxes").getName(), "checkboxes");
     }
 
     @Test
@@ -74,6 +76,7 @@ public class SavkkCookies {
         WebElement goBackAgain2 = webDriver.findElement(By.xpath("//a[.='Great! Return to menu']"));
         Assert.assertEquals(goBackAgain2.getText(), "Great! Return to menu");
         goBackAgain2.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("select").getName(), "select");
     }
 
     @Test
@@ -91,6 +94,7 @@ public class SavkkCookies {
         WebElement goBackFromForm = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
         Assert.assertEquals(goBackFromForm.getText(), "Great! Return to menu");
         goBackFromForm.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("form").getName(), "form");
 
         //IFrame
         webDriver.findElement(By.id("iframe")).click();
@@ -103,6 +107,7 @@ public class SavkkCookies {
         WebElement goBackFromIframe = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
         Assert.assertEquals(goBackFromIframe.getText(), "Great! Return to menu");
         goBackFromIframe.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("iframe").getName(), "iframe");
     }
 
     @Test
@@ -123,6 +128,7 @@ public class SavkkCookies {
         Assert.assertTrue(returnToMenu.isDisplayed());
         returnToMenu.click();
         webDriver.switchTo().alert().accept();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("alerts").getName(), "alerts");
     }
 
     @Test(enabled = false)
@@ -169,30 +175,9 @@ public class SavkkCookies {
         WebElement goBackFromTable = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
         Assert.assertEquals(goBackFromTable.getText(), "Great! Return to menu");
         goBackFromTable.click();
+        Assert.assertEquals(webDriver.manage().getCookieNamed("table").getName(), "table");
     }
 
-    @Test(priority = 1)
-    void testCookies() {
-        List<String> cook = new ArrayList<>();
-        List<String> cook1 = new ArrayList<>();
-        cook.add("table");
-        cook.add("checkboxes");
-        cook.add("select");
-        cook.add("form");
-        cook.add("iframe");
-        cook.add("alerts");
-        cook.add("button");
-        Set<Cookie> cookies = webDriver.manage().getCookies();
-        for (Cookie cookie : cookies
-        ) {
-            cook1.add(cookie.getName());
-        }
-        Collections.sort(cook);
-        Collections.sort(cook1);
-        for (int i = 0; i < cookies.size(); i++) {
-            Assert.assertEquals(cook1.get(i), cook.get(i));
-        }
-    }
 
     @AfterClass
     void closeDriver() {
