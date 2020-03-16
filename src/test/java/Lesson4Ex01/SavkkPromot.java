@@ -178,4 +178,3 @@ public class SavkkPromot {
         webDriver.close();
     }
 }
-
