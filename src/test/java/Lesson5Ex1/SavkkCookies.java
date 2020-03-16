@@ -2,10 +2,14 @@ package Lesson5Ex1;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+
+import java.util.*;
 
 public class SavkkCookies {
     private WebDriver webDriver;
@@ -18,7 +22,7 @@ public class SavkkCookies {
     }
 
 
-    @Test(enabled = false)
+    @Test
     void buttonTest() {
         //Button page
         webDriver.findElement(By.id("button")).click();
@@ -29,7 +33,7 @@ public class SavkkCookies {
         goBack.click();
     }
 
-    @Test(enabled = false)
+    @Test
     void checkBoxAndRadioTest() {
         //Checkbox and Radio
         webDriver.findElement(By.id("checkbox")).click();
@@ -50,7 +54,7 @@ public class SavkkCookies {
         goBackAgain.click();
     }
 
-    @Test(enabled = false)
+    @Test
     void selectTest() {
         //Select hero
         webDriver.findElement(By.id("select")).click();
@@ -72,7 +76,7 @@ public class SavkkCookies {
         goBackAgain2.click();
     }
 
-    @Test(enabled = false)
+    @Test
     void formAndIframeTest() {
         //Form
         webDriver.findElement(By.id("form")).click();
@@ -81,7 +85,7 @@ public class SavkkCookies {
         webDriver.findElement(By.xpath("//input[@type='email']")).sendKeys("gh7777@mail.ru");
         webDriver.findElement(By.xpath("//input[1][@type = 'radio']")).click();
         webDriver.findElement(By.xpath("//div[5]/input[@type='text']")).sendKeys("Moscow");
-        webDriver.findElement(By.xpath("//input[@type = 'file']")).sendKeys("D:/12]/Новая папка/hk.jpg");
+        webDriver.findElement(By.xpath("//input[@type = 'file']")).sendKeys("C:/Users/Tanika/Desktop/Новый текстовый документ.txt");
         webDriver.findElement(By.xpath("//textarea [@cols = '50']")).sendKeys("Ton Tom");
         webDriver.findElement(By.xpath("//input[@type = 'submit']")).click();
         WebElement goBackFromForm = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
@@ -121,7 +125,7 @@ public class SavkkCookies {
         webDriver.switchTo().alert().accept();
     }
 
-    @Test (enabled = false)
+    @Test(enabled = false)
     void promptAlertAndConfirmNegative() throws InterruptedException {
         //Prompt, Alert and Confirm NegativeTest
         webDriver.findElement(By.id("alerts")).click();
@@ -165,6 +169,29 @@ public class SavkkCookies {
         WebElement goBackFromTable = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
         Assert.assertEquals(goBackFromTable.getText(), "Great! Return to menu");
         goBackFromTable.click();
+    }
+
+    @Test(priority = 1)
+    void testCookies() {
+        List<String> cook = new ArrayList<>();
+        List<String> cook1 = new ArrayList<>();
+        cook.add("table");
+        cook.add("checkboxes");
+        cook.add("select");
+        cook.add("form");
+        cook.add("iframe");
+        cook.add("alerts");
+        cook.add("button");
+        Set<Cookie> cookies = webDriver.manage().getCookies();
+        for (Cookie cookie : cookies
+        ) {
+            cook1.add(cookie.getName());
+        }
+        Collections.sort(cook);
+        Collections.sort(cook1);
+        for (int i = 0; i < cookies.size(); i++) {
+            Assert.assertEquals(cook1.get(i), cook.get(i));
+        }
     }
 
     @AfterClass
