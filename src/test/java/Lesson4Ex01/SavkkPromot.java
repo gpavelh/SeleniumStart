@@ -1,10 +1,7 @@
 package Lesson4Ex01;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -111,7 +108,7 @@ public class SavkkPromot {
     }
 
     @Test
-    void promptAlertAndConfirm() throws InterruptedException {
+    void promptAlertAndConfirm() {
         //Prompt, Alert and Confirm
         webDriver.findElement(By.id("alerts")).click();
         webDriver.findElement(By.xpath("//button[@class = 'get']")).click();
@@ -130,7 +127,7 @@ public class SavkkPromot {
         webDriver.switchTo().alert().accept();
     }
 
-    @Test(enabled = false)
+    @Test
     void promptAlertAndConfirmNegative() throws InterruptedException {
         //Prompt, Alert and Confirm NegativeTest
         webDriver.findElement(By.id("alerts")).click();
@@ -142,11 +139,38 @@ public class SavkkPromot {
         Alert alertPassEnter = webDriver.switchTo().alert();
         alertPassEnter.sendKeys(password);
         alertPassEnter.accept();
-//        WebElement great = webDriver.findElement(By.xpath("//label[.='Great!']"));
-//        Assert.assertEquals(great.getText(),"Great!");
-//        WebElement returnToMenu = webDriver.findElement(By.xpath("//button[@class ='return']"));
-//        Assert.assertTrue(returnToMenu.isDisplayed());
-//        returnToMenu.click();
+        Thread.sleep(3000);
+        Assert.assertTrue(isElementExsist("//label[.='Great!']"));
+
+    }
+
+    public boolean isElementExsist(String xpath) {
+        try {
+            webDriver.findElement(By.xpath(xpath));
+            return false;
+        } catch (NoSuchElementException e) {
+            return true;
+        }
+    }
+
+    @Test
+    void testTablePage() {
+        //Delete elements
+        webDriver.findElement(By.id("table")).click();
+        webDriver.findElement(By.xpath("//tr[2]/td/input[@type = 'checkbox']")).click();
+        webDriver.findElement(By.xpath("//tr[5]/td/input[@type = 'checkbox']")).click();
+        webDriver.findElement(By.xpath("//input[@type = 'button' and @value = 'Delete']")).click();
+
+        //Paste element
+        webDriver.findElement(By.xpath("//div[1]/input[@type = 'text']")).sendKeys("Coca-Cola");
+        webDriver.findElement(By.xpath("//div[2]/input[@type = 'text']")).sendKeys("Petya Petyvich");
+        webDriver.findElement(By.xpath("//div[3]/input[@type = 'text']")).sendKeys("LA");
+        webDriver.findElement(By.xpath("//input[@type = 'button' and @value = 'Add']")).click();
+
+        //Exit
+        WebElement goBackFromTable = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
+        Assert.assertEquals(goBackFromTable.getText(), "Great! Return to menu");
+        goBackFromTable.click();
     }
 
     @AfterMethod
