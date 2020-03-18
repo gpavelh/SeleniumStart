@@ -139,7 +139,6 @@ public class SavkkPromot {
         Alert alertPassEnter = webDriver.switchTo().alert();
         alertPassEnter.sendKeys(password);
         alertPassEnter.accept();
-        Thread.sleep(3000);
         Assert.assertTrue(isElementExsist("//label[.='Great!']"));
 
     }
