@@ -22,10 +22,10 @@ public class TestPage {
     }
 
     @Test
-    void firstTest() throws InterruptedException {
+    void firstTest() {
         //Login page
         Login login = new Login(webDriver);
-        if (login.getLoginName().equals("Login")){
+        if (login.getLoginName().equals("Login")) {
             login.changeLang();
         }
         login.loginToSite("demo", "demo");
@@ -49,10 +49,7 @@ public class TestPage {
         new WebDriverWait(webDriver, 30, 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class = 'amount']")));
         Assert.assertTrue(function.assertFormat(function.getTextFromElement(viewPage.AMOUNT)));
-
         viewPage.moveToAmount(function.getWebElement(viewPage.AMOUNT));
-//        WebElement myMoney = webDriver.findElement(By.xpath("//small[@class = 'my-assets']"));
-//        String myMoneyAmount = myMoney.getText().substring(13);
         Assert.assertTrue(function.assertFormat(function.getOnlyAmount(viewPage.MYMONEY)));
     }
 
