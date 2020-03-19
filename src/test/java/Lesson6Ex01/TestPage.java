@@ -46,22 +46,21 @@ public class TestPage {
         mainPage.goToViewPage();
 
         //View page
-        WebElement textViewPage = webDriver.findElement(By.xpath("//div[1][@id = 'can-spend']/span[@class = 'text']"));
-        Assert.assertTrue(textViewPage.getText().contains("Финансовая свобода"));
+        ViewPage viewPage = new ViewPage(webDriver);
+        Assert.assertTrue(viewPage.getTextFromElement(viewPage.TEXTVIEWPAGE).contains("Финансовая свобода"));
 
         //периодически тупит загрузка. запиливаем ожидание
         new WebDriverWait(webDriver, 30, 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class = 'amount']")));
-
-        WebElement amount = webDriver.findElement(By.xpath("//span[@class = 'amount']"));
+//
+//        WebElement amount = webDriver.findElement(By.xpath("//span[@class = 'amount']"));
         TestReg testReg = new TestReg();
-        Assert.assertTrue(testReg.assertFormat(amount.getText()));
+        Assert.assertTrue(testReg.assertFormat(viewPage.getTextFromElement(viewPage.AMOUNT)));
 
-        ViewPage viewPage = new ViewPage(webDriver);
-        viewPage.moveToAmount(amount);
-        WebElement myMoney = webDriver.findElement(By.xpath("//small[@class = 'my-assets']"));
-        String myMoneyAmount = myMoney.getText().substring(13);
-        Assert.assertTrue(testReg.assertFormat(myMoneyAmount));
+        viewPage.moveToAmount((WebElement)viewPage.AMOUNT);
+//        WebElement myMoney = webDriver.findElement(By.xpath("//small[@class = 'my-assets']"));
+//        String myMoneyAmount = myMoney.getText().substring(13);
+//        Assert.assertTrue(testReg.assertFormat(myMoneyAmount));
     }
 
 
