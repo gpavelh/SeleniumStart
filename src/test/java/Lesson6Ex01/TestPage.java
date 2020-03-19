@@ -2,20 +2,14 @@ package Lesson6Ex01;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TestPage {
     private WebDriver webDriver;
@@ -28,39 +22,38 @@ public class TestPage {
     }
 
     @Test
-    void firstPage() {
+    void firstTest() throws InterruptedException {
         //Login page
         Login login = new Login(webDriver);
+        if (login.getLoginName().equals("Login")){
+            login.changeLang();
+        }
         login.loginToSite("demo", "demo");
 
         //Code page
-        WebElement textCodeZone = webDriver.findElement(By.id("otp-code-text"));
-        Assert.assertTrue(textCodeZone.getText().contains("был отправлен код подтверждения, введите его для входа"));
-        AuthForm authForm = new AuthForm(webDriver);
-        authForm.enterAuthCode("0000");
+        CodeZone codeZone = new CodeZone(webDriver);
+        Function function = new Function(webDriver);
+        Assert.assertTrue(function.getTextFromElement(codeZone.TESTCODEZONE).contains("был отправлен код подтверждения, введите его для входа"));
+        codeZone.enterAuthCode("0000");
 
         //Main page
-        WebElement textMainPage = webDriver.findElement(By.xpath("//div[@class = 'license']"));
-        Assert.assertTrue(textMainPage.getText().contains("Генеральная лицензия Банка России"));
         MainPage mainPage = new MainPage(webDriver);
+        Assert.assertTrue(function.getTextFromElement(mainPage.TEXTMAINPAGE).contains("Генеральная лицензия Банка России"));
         mainPage.goToViewPage();
 
         //View page
         ViewPage viewPage = new ViewPage(webDriver);
-        Assert.assertTrue(viewPage.getTextFromElement(viewPage.TEXTVIEWPAGE).contains("Финансовая свобода"));
+        Assert.assertTrue(function.getTextFromElement(viewPage.TEXTVIEWPAGE).contains("Финансовая свобода"));
 
         //периодически тупит загрузка. запиливаем ожидание
         new WebDriverWait(webDriver, 30, 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class = 'amount']")));
-//
-//        WebElement amount = webDriver.findElement(By.xpath("//span[@class = 'amount']"));
-        TestReg testReg = new TestReg();
-        Assert.assertTrue(testReg.assertFormat(viewPage.getTextFromElement(viewPage.AMOUNT)));
+        Assert.assertTrue(function.assertFormat(function.getTextFromElement(viewPage.AMOUNT)));
 
-        viewPage.moveToAmount((WebElement)viewPage.AMOUNT);
+        viewPage.moveToAmount(function.getWebElement(viewPage.AMOUNT));
 //        WebElement myMoney = webDriver.findElement(By.xpath("//small[@class = 'my-assets']"));
 //        String myMoneyAmount = myMoney.getText().substring(13);
-//        Assert.assertTrue(testReg.assertFormat(myMoneyAmount));
+        Assert.assertTrue(function.assertFormat(function.getOnlyAmount(viewPage.MYMONEY)));
     }
 
 
