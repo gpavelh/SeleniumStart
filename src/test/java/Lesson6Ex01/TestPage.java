@@ -7,14 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class TestPage {
     private WebDriver webDriver;
 
-    @BeforeMethod
+    @BeforeClass
     public void initDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
@@ -54,7 +52,7 @@ public class TestPage {
     }
 
 
-    @AfterMethod
+    @AfterClass
     void closeDriver() {
         webDriver.close();
     }
