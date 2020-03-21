@@ -9,7 +9,6 @@ public class Login {
     private final By PASSWORD = By.name("password");
     private final By BUTTON = By.id("login-button");
     private final By LANG = By.xpath("//a[.='По-русски']");
-    private final By LOGINBUTTON = By.id("login-button");
 
     public Login(WebDriver webDriver) {
 
@@ -29,6 +28,6 @@ public class Login {
     }
 
     public String getLoginName() {
-        return webDriver.findElement(LOGINBUTTON).getText();
+        return webDriver.findElement(BUTTON).getText();
     }
 }
