@@ -22,7 +22,7 @@ public class TestPage {
     }
 
     @Test
-    void firstTest() {
+    void firstTest() throws InterruptedException {
         //Login page
         Login login = new Login(webDriver);
         if (login.getLoginName().equals("Login")) {
@@ -45,11 +45,14 @@ public class TestPage {
         ViewPage viewPage = new ViewPage(webDriver);
         Assert.assertTrue(function.getTextFromElement(viewPage.TEXTVIEWPAGE).contains("Финансовая свобода"));
 
-        //периодически тупит загрузка. запиливаем ожидание
         new WebDriverWait(webDriver, 30, 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class = 'amount']")));
         Assert.assertTrue(function.assertFormat(function.getTextFromElement(viewPage.AMOUNT)));
         viewPage.moveToAmount(function.getWebElement(viewPage.AMOUNT));
+
+        new WebDriverWait(webDriver, 30, 5)
+                .until(ExpectedConditions.textToBePresentInElement(function.getWebElement(viewPage.MYMONEY),"Моих средств 2 936 972.64 "));
+
         Assert.assertTrue(function.assertFormat(function.getOnlyAmount(viewPage.MYMONEY)));
     }
 
