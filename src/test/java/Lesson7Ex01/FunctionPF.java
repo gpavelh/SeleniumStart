@@ -1,9 +1,5 @@
 package Lesson7Ex01;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,14 +14,5 @@ public class FunctionPF {
             return false;
         }
     }
-//    public String getTextFromElement(By element){
-//        return webDriver.findElement(element).getText();
-//    }
-//    public WebElement getWebElement(By element){
-//        return webDriver.findElement(element);
-//    }
-//    public String getOnlyAmount(By element){
-//        return webDriver.findElement(element).getText().substring(13);
-//    }
 }
 

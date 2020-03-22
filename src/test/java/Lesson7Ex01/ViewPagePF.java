@@ -14,7 +14,7 @@ public class ViewPagePF {
     }
 
     private final WebDriver webDriver;
-    @FindBy(xpath = "//div[1][@id = 'can-spend']/span[@class = 'text']")
+    @FindBy(xpath = "//div/span[contains(text(),'свобода')]")
     protected WebElement textViewPage;
     @FindBy(xpath = "//span[@class = 'amount']")
     protected WebElement amount;

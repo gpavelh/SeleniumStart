@@ -16,7 +16,7 @@ public class MainPagePF {
 
     @FindBy(xpath = "//a[@id='bank-overview' and .= 'Обзор']")
     private WebElement viewButton;
-    @FindBy(xpath = "//div[@class = 'license']")
+    @FindBy(xpath = "//div[contains(text(),'Генеральная лицензия Банка России')]")
     protected WebElement textMainPage;
 
 
