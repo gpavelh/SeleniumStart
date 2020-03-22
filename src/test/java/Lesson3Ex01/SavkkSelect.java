@@ -84,11 +84,11 @@ public class SavkkSelect {
     void formAndIframeTest() {
         //Form
         webDriver.findElement(By.id("form")).click();
-        webDriver.findElement(By.xpath("//div[1]/input[@type='text']")).sendKeys("Pavel");
-        webDriver.findElement(By.xpath("//div[2]/input[@type='text']")).sendKeys("Glinyany");
+        webDriver.findElement(By.xpath("//div[label = 'First Name:']//input")).sendKeys("Pavel");
+        webDriver.findElement(By.xpath("//div[label = 'Last Name:']//input")).sendKeys("Glinyany");
         webDriver.findElement(By.xpath("//input[@type='email']")).sendKeys("gh7777@mail.ru");
         webDriver.findElement(By.xpath("//input[1][@type = 'radio']")).click();
-        webDriver.findElement(By.xpath("//div[5]/input[@type='text']")).sendKeys("Moscow");
+        webDriver.findElement(By.xpath("//div[label = 'Address:']//input")).sendKeys("Moscow");
         webDriver.findElement(By.xpath("//input[@type = 'file']")).sendKeys("D:/12]/Новая папка/hk.jpg");
         webDriver.findElement(By.xpath("//textarea [@cols = '50']")).sendKeys("Ton Tom");
         webDriver.findElement(By.xpath("//input[@type = 'submit']")).click();
