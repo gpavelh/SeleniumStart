@@ -48,7 +48,7 @@ public class TestPage {
         viewPage.moveToAmount(function.getWebElement(viewPage.AMOUNT));
 
         new WebDriverWait(webDriver, 30, 5)
-                .until(ExpectedConditions.textToBePresentInElement(function.getWebElement(viewPage.MYMONEY),"Моих средств 2 936 972.64 "));
+                .until(ExpectedConditions.textToBePresentInElement(function.getWebElement(viewPage.MYMONEY),"Моих средств "));
 
         Assert.assertTrue(function.assertFormat(function.getOnlyAmount(viewPage.MYMONEY)));
     }

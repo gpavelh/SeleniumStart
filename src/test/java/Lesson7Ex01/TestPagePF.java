@@ -15,6 +15,7 @@ public class TestPagePF {
     public void initDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
+        webDriver.manage().window().fullscreen();
         webDriver.get("https://idemo.bspb.ru:");
     }
 
@@ -48,7 +49,7 @@ public class TestPagePF {
         viewPage.moveToAmount(viewPage.Amount);
 
         new WebDriverWait(webDriver, 30, 5)
-                .until(ExpectedConditions.textToBePresentInElement(viewPage.MyMoney,"Моих средств 2 936 972.64 "));
+                .until(ExpectedConditions.textToBePresentInElement(viewPage.MyMoney,"Моих средств "));
         Assert.assertTrue(function.assertFormat(viewPage.MyMoney.getText().substring(13)));
     }
 
