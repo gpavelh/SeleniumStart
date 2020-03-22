@@ -20,7 +20,7 @@ public class TestPagePF {
     }
 
     @Test
-    void firstTest() throws InterruptedException {
+    void firstTest() {
         //Login page
         LoginPF login = new LoginPF(webDriver);
         if (login.Button.getText().equals("Login")) {
@@ -49,7 +49,7 @@ public class TestPagePF {
         viewPage.moveToAmount(viewPage.Amount);
 
         new WebDriverWait(webDriver, 30, 5)
-                .until(ExpectedConditions.textToBePresentInElement(viewPage.MyMoney,"Моих средств "));
+                .until(ExpectedConditions.textToBePresentInElement(viewPage.MyMoney, "Моих средств "));
         Assert.assertTrue(function.assertFormat(viewPage.MyMoney.getText().substring(13)));
     }
 
