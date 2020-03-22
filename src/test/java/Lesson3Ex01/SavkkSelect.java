@@ -12,6 +12,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 public class SavkkSelect {
     private WebDriver webDriver;
 
@@ -26,8 +28,8 @@ public class SavkkSelect {
         webDriver.get("https://savkk.github.io/selenium-practice/");
     }
 
-    @Test
-    void buttonTest() throws InterruptedException {
+    @Test (enabled = false)
+    void buttonTest() {
         //Button page
         webDriver.findElement(By.id("button")).click();
         webDriver.findElement(By.id("first")).click();
@@ -37,7 +39,7 @@ public class SavkkSelect {
         goBack.click();
     }
 
-    @Test
+    @Test (enabled = false)
     void checkBoxAndRadioTest() {
         //Checkbox and Radio
         webDriver.findElement(By.id("checkbox")).click();
@@ -58,7 +60,7 @@ public class SavkkSelect {
         goBackAgain.click();
     }
 
-    @Test
+    @Test (enabled = false)
     void selectTest() {
         //Select hero
         webDriver.findElement(By.id("select")).click();
@@ -89,7 +91,7 @@ public class SavkkSelect {
         webDriver.findElement(By.xpath("//input[@type='email']")).sendKeys("gh7777@mail.ru");
         webDriver.findElement(By.xpath("//input[1][@type = 'radio']")).click();
         webDriver.findElement(By.xpath("//div[label = 'Address:']//input")).sendKeys("Moscow");
-        webDriver.findElement(By.xpath("//input[@type = 'file']")).sendKeys("D:/12]/Новая папка/hk.jpg");
+        webDriver.findElement(By.xpath("//input[@type = 'file']")).sendKeys((new File("src/test/resources/hk.jpg").getAbsolutePath()));
         webDriver.findElement(By.xpath("//textarea [@cols = '50']")).sendKeys("Ton Tom");
         webDriver.findElement(By.xpath("//input[@type = 'submit']")).click();
         WebElement goBackFromForm = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
