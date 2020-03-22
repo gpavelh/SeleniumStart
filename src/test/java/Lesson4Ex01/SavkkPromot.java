@@ -156,20 +156,26 @@ public class SavkkPromot {
     void testTablePage() {
         //Delete elements
         webDriver.findElement(By.id("table")).click();
-        webDriver.findElement(By.xpath("//tr[2]/td/input[@type = 'checkbox']")).click();
-        webDriver.findElement(By.xpath("//tr[5]/td/input[@type = 'checkbox']")).click();
-        webDriver.findElement(By.xpath("//input[@type = 'button' and @value = 'Delete']")).click();
-
+        deleteRowByIndex(2);
+        deleteRowByIndex(5);
         //Paste element
-        webDriver.findElement(By.xpath("//div[1]/input[@type = 'text']")).sendKeys("Coca-Cola");
-        webDriver.findElement(By.xpath("//div[2]/input[@type = 'text']")).sendKeys("Petya Petyvich");
-        webDriver.findElement(By.xpath("//div[3]/input[@type = 'text']")).sendKeys("LA");
+        complateForm("Coca Cola","Petya Ivanov", "LA");
         webDriver.findElement(By.xpath("//input[@type = 'button' and @value = 'Add']")).click();
 
         //Exit
         WebElement goBackFromTable = webDriver.findElement(By.xpath("//a[contains(text(),'Great')]"));
         Assert.assertEquals(goBackFromTable.getText(), "Great! Return to menu");
         goBackFromTable.click();
+    }
+
+    public void deleteRowByIndex(int index) {
+        webDriver.findElement(By.xpath("//tr[" + index + "]/td/input[@type = 'checkbox']")).click();
+        webDriver.findElement(By.xpath("//input[@type = 'button' and @value = 'Delete']")).click();
+    }
+    public void complateForm(String comp, String initials, String city) {
+        webDriver.findElement(By.xpath("//div[1]/input[@type = 'text']")).sendKeys(comp);
+        webDriver.findElement(By.xpath("//div[2]/input[@type = 'text']")).sendKeys(initials);
+        webDriver.findElement(By.xpath("//div[3]/input[@type = 'text']")).sendKeys(city);
     }
 
     @AfterMethod
