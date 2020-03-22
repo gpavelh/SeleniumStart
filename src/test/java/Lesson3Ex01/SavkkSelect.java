@@ -1,4 +1,4 @@
-package Lesson3Ex01;
+package Lesson3Ex01; //Домашка 17
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

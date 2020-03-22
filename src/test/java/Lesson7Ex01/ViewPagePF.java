@@ -15,11 +15,11 @@ public class ViewPagePF {
 
     private final WebDriver webDriver;
     @FindBy(xpath = "//div[1][@id = 'can-spend']/span[@class = 'text']")
-    protected WebElement TextViewPage;
+    protected WebElement textViewPage;
     @FindBy(xpath = "//span[@class = 'amount']")
-    protected WebElement Amount;
+    protected WebElement amount;
     @FindBy(xpath = "//small[@class = 'my-assets']")
-    protected WebElement MyMoney;
+    protected WebElement myMoney;
 
 
     public void moveToAmount(WebElement amount) {

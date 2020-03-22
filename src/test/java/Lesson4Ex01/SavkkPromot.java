@@ -1,4 +1,4 @@
-package Lesson4Ex01;
+package Lesson4Ex01; //Домашка 18
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -111,44 +111,44 @@ public class SavkkPromot {
     void promptAlertAndConfirm() {
         //Prompt, Alert and Confirm
         webDriver.findElement(By.id("alerts")).click();
-        webDriver.findElement(By.xpath("//button[@class = 'get']")).click();
+        webDriver.findElement(By.xpath("//button[text() = 'Get password']")).click();
         Alert alertPass = webDriver.switchTo().alert();
         String password = alertPass.getText().substring(15);
         alertPass.accept();
-        webDriver.findElement(By.xpath("//button[@class = 'set']")).click();
+        webDriver.findElement(By.xpath("//button[text() = 'Enter password']")).click();
         Alert alertPassEnter = webDriver.switchTo().alert();
         alertPassEnter.sendKeys(password);
         alertPassEnter.accept();
         WebElement great = webDriver.findElement(By.xpath("//label[.='Great!']"));
         Assert.assertEquals(great.getText(), "Great!");
-        WebElement returnToMenu = webDriver.findElement(By.xpath("//button[@class ='return']"));
+        WebElement returnToMenu = webDriver.findElement(By.xpath("//button[text() = 'Return to menu']"));
         Assert.assertTrue(returnToMenu.isDisplayed());
         returnToMenu.click();
         webDriver.switchTo().alert().accept();
     }
 
     @Test
-    void promptAlertAndConfirmNegative() throws InterruptedException {
+    void promptAlertAndConfirmNegative() {
         //Prompt, Alert and Confirm NegativeTest
         webDriver.findElement(By.id("alerts")).click();
-        webDriver.findElement(By.xpath("//button[@class = 'get']")).click();
+        webDriver.findElement(By.xpath("//button[text() = 'Get password']")).click();
         Alert alertPass = webDriver.switchTo().alert();
         String password = alertPass.getText();
         alertPass.accept();
-        webDriver.findElement(By.xpath("//button[@class = 'set']")).click();
+        webDriver.findElement(By.xpath("//button[text() = 'Enter password']")).click();
         Alert alertPassEnter = webDriver.switchTo().alert();
         alertPassEnter.sendKeys(password);
         alertPassEnter.accept();
-        Assert.assertTrue(isElementExsist("//label[.='Great!']"));
+        Assert.assertFalse(isElementExsist("//label[.='Great!']"));
 
     }
 
     public boolean isElementExsist(String xpath) {
         try {
             webDriver.findElement(By.xpath(xpath));
-            return false;
-        } catch (NoSuchElementException e) {
             return true;
+        } catch (NoSuchElementException e) {
+            return false;
         }
     }
 

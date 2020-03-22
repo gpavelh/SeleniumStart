@@ -1,4 +1,4 @@
-package Lesson7Ex01;
+package Lesson7Ex01; //Домашка 21
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +23,7 @@ public class TestPagePF {
     void firstTest() {
         //Login page
         LoginPF login = new LoginPF(webDriver);
-        if (login.Button.getText().equals("Login")) {
+        if (login.button.getText().equals("Login")) {
             login.changeLang();
         }
         login.loginToSite("demo", "demo");
@@ -31,26 +31,26 @@ public class TestPagePF {
         //Code page
         CodeZonePF codeZone = new CodeZonePF(webDriver);
         FunctionPF function = new FunctionPF();
-        Assert.assertTrue(codeZone.TestCodeZone.getText().contains("был отправлен код подтверждения, введите его для входа"));
+        Assert.assertTrue(codeZone.testCodeZone.getText().contains("был отправлен код подтверждения, введите его для входа"));
         codeZone.enterAuthCode("0000");
 
         //Main page
         MainPagePF mainPage = new MainPagePF(webDriver);
-        Assert.assertTrue(mainPage.TextMainPage.getText().contains("Генеральная лицензия Банка России"));
+        Assert.assertTrue(mainPage.textMainPage.getText().contains("Генеральная лицензия Банка России"));
         mainPage.goToViewPage();
 
         //View page
         ViewPagePF viewPage = new ViewPagePF(webDriver);
-        Assert.assertTrue(viewPage.TextViewPage.getText().contains("Финансовая свобода"));
+        Assert.assertTrue(viewPage.textViewPage.getText().contains("Финансовая свобода"));
 
         new WebDriverWait(webDriver, 30, 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class = 'amount']")));
-        Assert.assertTrue(function.assertFormat(viewPage.Amount.getText()));
-        viewPage.moveToAmount(viewPage.Amount);
+        Assert.assertTrue(function.assertFormat(viewPage.amount.getText()));
+        viewPage.moveToAmount(viewPage.amount);
 
         new WebDriverWait(webDriver, 30, 5)
-                .until(ExpectedConditions.textToBePresentInElement(viewPage.MyMoney, "Моих средств "));
-        Assert.assertTrue(function.assertFormat(viewPage.MyMoney.getText().substring(13)));
+                .until(ExpectedConditions.textToBePresentInElement(viewPage.myMoney, "Моих средств "));
+        Assert.assertTrue(function.assertFormat(viewPage.myMoney.getText().substring(13)));
     }
 
 

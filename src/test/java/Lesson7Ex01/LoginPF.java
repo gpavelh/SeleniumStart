@@ -16,27 +16,27 @@ public class LoginPF {
     }
 
     @FindBy(name = "username")
-    private WebElement Login;
+    private WebElement login;
 
     @FindBy(name = "password")
-    private WebElement Password;
+    private WebElement password;
 
     @FindBy(id = "login-button")
-    protected WebElement Button;
+    protected WebElement button;
 
     @FindBy(xpath = "//a[.='По-русски']")
-    private WebElement Lang;
+    private WebElement lang;
 
 
     public void loginToSite(String log, String pass) {
-        Login.clear();
-        Login.sendKeys(log);
-        Password.clear();
-        Password.sendKeys(pass);
-        Button.click();
+        login.clear();
+        login.sendKeys(log);
+        password.clear();
+        password.sendKeys(pass);
+        button.click();
     }
 
     public void changeLang() {
-        Lang.click();
+        lang.click();
     }
 }

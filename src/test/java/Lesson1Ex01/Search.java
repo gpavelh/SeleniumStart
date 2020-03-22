@@ -1,4 +1,4 @@
-package Lesson1Ex01;
+package Lesson1Ex01; //Домашка 15
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;

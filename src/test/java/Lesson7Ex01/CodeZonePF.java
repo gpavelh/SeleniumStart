@@ -1,6 +1,5 @@
 package Lesson7Ex01;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,16 +15,16 @@ public class CodeZonePF {
     }
 
     @FindBy(id = "otp-code")
-    private WebElement CodeField;
+    private WebElement codeField;
     @FindBy(id = "login-otp-button")
-    private WebElement Button;
+    private WebElement button;
     @FindBy(id = "otp-code-text")
-    protected WebElement TestCodeZone;
+    protected WebElement testCodeZone;
 
 
     public void enterAuthCode(String code) {
-        CodeField.clear();
-        CodeField.sendKeys(code);
-        Button.click();
+        codeField.clear();
+        codeField.sendKeys(code);
+        button.click();
     }
 }

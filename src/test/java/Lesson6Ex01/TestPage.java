@@ -1,4 +1,4 @@
-package Lesson6Ex01;
+package Lesson6Ex01; //Домашка 20
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,6 +1,5 @@
 package Lesson7Ex01;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,12 +15,12 @@ public class MainPagePF {
     }
 
     @FindBy(xpath = "//a[@id='bank-overview' and .= 'Обзор']")
-    private WebElement ViewButton;
+    private WebElement viewButton;
     @FindBy(xpath = "//div[@class = 'license']")
-    protected WebElement TextMainPage;
+    protected WebElement textMainPage;
 
 
     public void goToViewPage() {
-        ViewButton.click();
+        viewButton.click();
     }
 }
