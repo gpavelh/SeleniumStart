@@ -1,5 +1,6 @@
 package Lesson6Ex01; //Домашка 20
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +14,7 @@ public class TestPage {
 
     @BeforeClass
     public void initDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.get("https://idemo.bspb.ru:");
     }
