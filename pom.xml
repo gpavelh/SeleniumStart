@@ -16,8 +16,14 @@
         <selenium-java.version>3.141.59</selenium-java.version>
         <webdrivermanager.version>3.8.1</webdrivermanager.version>
         <hamcrest-all.version>1.3</hamcrest-all.version>
+        <selenide.version>5.10.0</selenide.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
