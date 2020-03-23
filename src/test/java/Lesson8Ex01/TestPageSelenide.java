@@ -1,4 +1,4 @@
-package Lesson8Ex01; //Домашка 21
+package Lesson8Ex01; //Домашка 22
 
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
