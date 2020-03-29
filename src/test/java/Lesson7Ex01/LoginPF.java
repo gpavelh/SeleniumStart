@@ -35,8 +35,18 @@ public class LoginPF {
         password.sendKeys(pass);
         button.click();
     }
+    public CodeZonePF loginToSiteFI(String log, String pass) {
+        login.clear();
+        login.sendKeys(log);
+        password.clear();
+        password.sendKeys(pass);
+        button.click();
+        return new CodeZonePF(webDriver);
+    }
 
-    public void changeLang() {
-        lang.click();
+    public void checkLang() {
+        if (button.getText().equals("Login")) {
+            lang.click();
+        }
     }
 }

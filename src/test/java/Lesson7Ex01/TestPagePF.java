@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 public class TestPagePF {
     private WebDriver webDriver;
 
-    @BeforeClass
+    @BeforeMethod
     public void initDriver() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
@@ -24,9 +24,7 @@ public class TestPagePF {
     void firstTest() {
         //Login page
         LoginPF login = new LoginPF(webDriver);
-        if (login.button.getText().equals("Login")) {
-            login.changeLang();
-        }
+        login.checkLang();
         login.loginToSite("demo", "demo");
 
         //Code page
@@ -54,8 +52,19 @@ public class TestPagePF {
         Assert.assertTrue(function.assertFormat(viewPage.myMoney.getText().substring(13)));
     }
 
+    @Test
+    void secondTest() {
+        LoginPF login = new LoginPF(webDriver);
+        login.checkLang();
+        login
+                .loginToSiteFI("demo", "demo")
+                .enterAuthCodeFI("0000")
+                .goToViewPageFI()
+                .assertViewPage();
+    }
 
-    @AfterClass
+
+    @AfterMethod
     void closeDriver() {
         webDriver.close();
     }

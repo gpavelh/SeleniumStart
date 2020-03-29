@@ -23,4 +23,8 @@ public class MainPagePF {
     public void goToViewPage() {
         viewButton.click();
     }
+    public ViewPagePF goToViewPageFI() {
+        viewButton.click();
+        return new ViewPagePF(webDriver);
+    }
 }

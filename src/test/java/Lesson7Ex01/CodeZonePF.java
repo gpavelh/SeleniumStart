@@ -27,4 +27,10 @@ public class CodeZonePF {
         codeField.sendKeys(code);
         button.click();
     }
+    public MainPagePF enterAuthCodeFI(String code) {
+        codeField.clear();
+        codeField.sendKeys(code);
+        button.click();
+        return new MainPagePF(webDriver);
+    }
 }

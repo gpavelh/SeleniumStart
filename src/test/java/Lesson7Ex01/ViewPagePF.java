@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class ViewPagePF {
 
@@ -25,5 +26,8 @@ public class ViewPagePF {
     public void moveToAmount(WebElement amount) {
         Actions actions = new Actions(webDriver);
         actions.moveToElement(amount).build().perform();
+    }
+    public void assertViewPage() {
+        Assert.assertTrue(textViewPage.isDisplayed());
     }
 }
