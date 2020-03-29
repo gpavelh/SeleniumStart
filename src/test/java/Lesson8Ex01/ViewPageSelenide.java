@@ -11,6 +11,7 @@ public class ViewPageSelenide {
 
     protected SelenideElement amount = $(By.xpath("//span[@class = 'amount']"));
     protected SelenideElement myMoney = $(By.xpath("//small[@class = 'my-assets']"));
+    protected SelenideElement textViewPage = $(By.xpath ("//div/span[contains(text(),'свобода')]"));
 
 
 

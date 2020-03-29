@@ -19,7 +19,9 @@ public class LoginSelenide {
         $(By.id("login-button")).click();
     }
 
-    public void changeLang() {
-        $(By.xpath("//a[.='По-русски']")).click();
+    public void checkLang() {
+        if ($(By.id("login-button")).getText().equals("Login")) {
+            $(By.xpath("//a[.='По-русски']")).click();
+        }
     }
 }
