@@ -36,6 +36,9 @@ public class TestPagePF {
         //Main page
         MainPagePF mainPage = new MainPagePF(webDriver);
         Assert.assertTrue(mainPage.textMainPage.getText().contains("Генеральная лицензия Банка России"));
+
+        new WebDriverWait(webDriver,30,5)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='bank-overview' and .= 'Обзор']")));
         mainPage.goToViewPage();
 
         //View page
