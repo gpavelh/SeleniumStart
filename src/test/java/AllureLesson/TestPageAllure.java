@@ -9,8 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TestPageAllure {
 
@@ -46,6 +45,6 @@ public class TestPageAllure {
     }
     @AfterMethod
     void closeDriver() {
-        WebDriverRunner.getWebDriver().quit();
+        closeWebDriver();
     }
 }
