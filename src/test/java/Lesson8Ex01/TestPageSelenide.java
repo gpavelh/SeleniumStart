@@ -1,8 +1,10 @@
 package Lesson8Ex01; //Домашка 22
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -41,5 +43,9 @@ public class TestPageSelenide {
         viewPage.amount.shouldBe(Condition.matchesText("\\d{0,3}\\s\\d{0,3}\\s\\d{0,3}\\.\\d{0,2}\\s\\D"));
         viewPage.moveToAmount(viewPage.amount);
         viewPage.myMoney.shouldBe(Condition.matchesText("\\d{0,3}\\s\\d{0,3}\\s\\d{0,3}\\.\\d{0,2}\\s\\D"));
+    }
+    @AfterMethod
+    void closeDriver() {
+        WebDriverRunner.getWebDriver().close();
     }
 }

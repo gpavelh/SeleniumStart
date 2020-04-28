@@ -180,6 +180,6 @@ public class SavkkPromot {
 
     @AfterMethod
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

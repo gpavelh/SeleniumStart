@@ -113,6 +113,6 @@ public class SavkkSelect {
 
     @AfterMethod
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

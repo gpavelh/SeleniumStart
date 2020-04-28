@@ -57,6 +57,6 @@ public class SavkkSite {
 
     @AfterMethod
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

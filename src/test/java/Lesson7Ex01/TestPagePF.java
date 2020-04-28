@@ -69,6 +69,6 @@ public class TestPagePF {
 
     @AfterMethod
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

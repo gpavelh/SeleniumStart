@@ -181,6 +181,6 @@ public class SavkkCookies {
 
     @AfterClass
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }

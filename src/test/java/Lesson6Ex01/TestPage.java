@@ -57,6 +57,6 @@ public class TestPage {
 
     @AfterClass
     void closeDriver() {
-        webDriver.close();
+        webDriver.quit();
     }
 }
